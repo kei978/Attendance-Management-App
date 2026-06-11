@@ -2,7 +2,7 @@
 
 ## プロジェクト概要
 
-本アプリは、勤怠管理アプリの基本機能を実装したものです。
+本アプリは、勤怠管理アプリの基本機能を実装したものです。<br>
 打刻や勤怠の確認、修正などの基本的な勤怠管理機能を備えています。
 
 **主な機能：**
@@ -50,7 +50,7 @@
 
 ## メール認証
 
-MailHogを使用しています。
+MailHogを使用しています。<br>
 .envファイルのMAIL_FROM_ADDRESSは任意のメールアドレスを入力してください。
 
 ## 使用技術（実行環境）
@@ -69,29 +69,33 @@ MailHogを使用しています。
 
 ## ユーザー情報
 
-- name：一般ユーザー1
-　email：user1@example.com
+- name：一般ユーザー1<br>
+　email：user1@example.com<br>
 　password：password
-- name：一般ユーザー2
-　email：user2@example.com
+- name：一般ユーザー2<br>
+　email：user2@example.com<br>
 　password：password
-- name：管理者ユーザー
-　email：user3@example.com
+- name：管理者ユーザー<br>
+　email：user3@example.com<br>
 　password：password
 
 ## PHPUnitを利用したテストに関して
 
 **以下のコマンド：**
+1. テスト用データベースの作成
    ```bash
-//テスト用データベースの作成
-docker-compose exec mysql bash
-mysql -u root -p
-//パスワードはlaravel_passと入力
-create database test_database;
-
-docker-compose exec php bash
-php artisan migrate:fresh --env=testing
-./vendor/bin/phpunit
+   docker compose exec mysql bash
+   mysql -u root -p
+   // パスワードはrootと入力
+   create database laravel_test;
+   ```
+2. テスト用データベースのマイグレーション
+   ```bash
+   docker compose exec php bash
+   php artisan migrate:fresh --env=testing
+   // エラーが発生した場合はMySQLコンテナ内で以下コマンドを実行
+   GRANT ALL PRIVILEGES ON laravel_test.* TO 'laravel_user'@'%';
+   FLUSH PRIVILEGES;
    ```
 
 ## URL一覧
