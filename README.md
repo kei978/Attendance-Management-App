@@ -1,4 +1,4 @@
-# Flea Market App（フリマアプリ）
+# Attendance-Management-App（勤怠管理アプリ）
 
 ## プロジェクト概要
 
@@ -8,9 +8,7 @@
 **主な機能：**
 
 - 会員登録 / ログイン / ログアウト
-- 勤怠登録・修正・一覧表示・詳細表示
-- 商品購入 / 出品
-- 画像アップロード（storage 連携）
+- 勤怠登録 / 修正・承認 / 一覧表示 / 詳細表示
 
 ## Docker ビルド
 
@@ -50,6 +48,11 @@
    php artisan db:seed
    ```
 
+## メール認証
+
+MailHogを使用しています。
+.envファイルのMAIL_FROM_ADDRESSは任意のメールアドレスを入力してください。
+
 ## 使用技術（実行環境）
 
 - PHP **8.2**
@@ -64,9 +67,37 @@
 
 ![ER図](docs/Attendance-Management-App.png)
 
+## ユーザー情報
+
+- name：一般ユーザー1
+　email：user1@example.com
+　password：password
+- name：一般ユーザー2
+　email：user2@example.com
+　password：password
+- name：管理者ユーザー
+　email：user3@example.com
+　password：password
+
+## PHPUnitを利用したテストに関して
+
+**以下のコマンド：**
+   ```bash
+//テスト用データベースの作成
+docker-compose exec mysql bash
+mysql -u root -p
+//パスワードはlaravel_passと入力
+create database test_database;
+
+docker-compose exec php bash
+php artisan migrate:fresh --env=testing
+./vendor/bin/phpunit
+   ```
+
 ## URL一覧
 
-- トップページ：http://localhost/
-- ユーザ登録画面：http://localhost/register
+- 一般ユーザーログイン画面：http://localhost/login
+- 管理者ユーザーログイン画面：http://localhost/admin/login
+- 会員登録画面：http://localhost/register
 - phpMyAdmin：http://localhost:8080/
 - MailHog（メール確認）：http://localhost:8025/
