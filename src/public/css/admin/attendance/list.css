@@ -1,0 +1,118 @@
+/* 画面全体の背景色 */
+body {
+    background: #f2f2f2;
+}
+
+.attendance-list-container {
+    width: 760px;
+    margin: 40px auto;
+    padding: 10px;
+}
+
+/* タイトル */
+.page-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.title-bar {
+    width: 6px;
+    height: 40px;
+    background: #000;
+    margin-right: 10px;
+}
+
+/* 月切替 */
+.attendance-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.attendance-list-header__nav {
+    font-size: 18px;
+    text-decoration: none;
+    color: #848484;
+}
+
+.month-center {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.calendar-icon {
+    font-size: 20px;
+}
+
+.month-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* テーブル */
+.attendance-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.attendance-table__head,
+.attendance-table__data {
+    background: #fff;
+    color: #848484;
+    padding: 14px 10px;
+    border-bottom: 2px solid #e1e1e1;
+    text-align: center;
+}
+
+.attendance-table__head {
+    font-weight: bold;
+    border-bottom: 3px solid #e1e1e1;
+}
+
+.attendance-table tr:last-child,
+.attendance-table__data {
+    border-bottom: none;
+}
+
+/* 詳細ボタン */
+.detail-link {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    opacity: 0.8;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 600px) {
+    .attendance-list-container {
+        width: 90%;
+        padding: 0;
+    }
+
+    .attendance-table__head,
+    .attendance-table__data {
+        padding: 10px 4px;
+        font-size: 14px;
+    }
+
+    .month-text {
+        font-size: 18px;
+    }
+
+    .attendance-list-header__nav {
+        font-size: 16px;
+    }
+}

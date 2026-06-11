@@ -1,0 +1,92 @@
+/* 画面全体の背景 */
+body {
+    background: #f2f2f2;
+}
+
+/* レイアウト */
+.attendance-container {
+    width: 480px;
+    margin: 40px auto;
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* 状態表示 */
+.status-label {
+    display: inline-block;
+    padding: 6px 20px;
+    background: #e5e5e5;
+    color: #555;
+    font-size: 18px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+}
+
+/* 日付・時刻 */
+.date-text {
+    font-size: 32px;
+    margin: 0;
+}
+
+.time-text {
+    font-size: 70px;
+    font-weight: bold;
+    margin: 0 0 60px 0;
+}
+
+/* ボタン（共通） */
+.btn {
+    width: 160px;
+    padding: 14px 0;
+    font-size: 24px;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-black {
+    background: #000;
+    color: #fff;
+}
+
+.btn-white {
+    background: #fff;
+    color: #000;
+}
+
+/* ボタン配置（working のとき） */
+.attendance-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.attendance-actions form {
+    margin: 0;
+    width: auto;
+}
+
+.after-text {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+/* レスポンシブ */
+@media screen and (max-width: 600px) {
+    .attendance-container {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .time-text {
+        font-size: 36px;
+    }
+
+    .btn {
+        width: 130px;
+        font-size: 18px;
+        padding: 12px 0;
+    }
+}

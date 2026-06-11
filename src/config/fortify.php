@@ -1,6 +1,5 @@
 <?php
 
-use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 
 return [
@@ -74,7 +73,7 @@ return [
     |
     */
 
-    'home' => null,
+    'home' => '/attendance',
 
     /*
     |--------------------------------------------------------------------------
@@ -147,11 +146,7 @@ return [
     */
 
     'features' => [
-        Features::registration(),
-        Features::resetPasswords(),
         Features::emailVerification(),
-        Features::updateProfileInformation(),
-        Features::updatePasswords(),
     ],
 
 ];

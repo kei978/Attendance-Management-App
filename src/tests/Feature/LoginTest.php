@@ -3,15 +3,25 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class LoginTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** メール未入力 */
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->seed();
+    }
+
+    /* ================================================================
+        メールアドレスが未入力の場合、バリデーションメッセージが表示される
+    ================================================================ */
+    /**
+     *
+     */
     public function test_email_is_required()
     {
         $response = $this->post('/login', [
@@ -24,7 +34,9 @@ class LoginTest extends TestCase
         ]);
     }
 
-    /** パスワード未入力 */
+    /* ============================================================
+        パスワードが未入力の場合、バリデーションメッセージが表示される
+    ============================================================ */
     public function test_password_is_required()
     {
         $response = $this->post('/login', [
@@ -37,33 +49,23 @@ class LoginTest extends TestCase
         ]);
     }
 
-    /** 入力情報が間違っている場合 */
+    /* ============================================================
+        登録内容と一致しない場合、バリデーションメッセージが表示される
+    ============================================================ */
     public function test_invalid_credentials_show_error_message()
     {
+        $user = User::factory()->create([
+            'email' => 'correct@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
         $response = $this->post('/login', [
-            'email' => 'notfound@example.com',
-            'password' => 'wrongpassword',
+            'email' => 'wrong@example.com',
+            'password' => 'password123',
         ]);
 
         $response->assertSessionHasErrors([
             'email' => 'ログイン情報が登録されていません',
         ]);
-    }
-
-    /** 正しい情報でログイン成功 */
-    public function test_user_can_login_successfully()
-    {
-        $user = User::factory()->create([
-            'email' => 'test@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        $response = $this->post('/login', [
-            'email' => 'test@example.com',
-            'password' => 'password123',
-        ]);
-
-        $this->assertAuthenticatedAs($user);
-        $response->assertRedirect('/?tab=mylist');
     }
 }

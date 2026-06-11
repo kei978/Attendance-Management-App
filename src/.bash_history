@@ -101,3 +101,42 @@ exit
 php artisan migrate
 php artisan db:seed
 exit
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+exit
+php artisan optimize:clear
+exit
+php artisan storage:link
+exit
+php artisan storage:link
+php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed
+php artisan test
+php artisan test --AddressUdateTest
+php artisan test --AddressUdateTest.php
+php artisan test --filter AddressUpdateTest
+exit
+php artisan make:model Attendance
+php artisan make:model AttendanceBreak
+php artisan make:model AttendanceRequest
+php artisan make:model MonthlySummary
+exit
+php atisan make:controller AuthController
+php artisan make:controller AuthController
+php artisan make:controller AttendanceController
+php artisan make:controller RequestController
+exit
+php artisan make:seeder AttendanceSeeder
+php artisan migrate:fresh --seed
+php artisan make:seeder DatabaseSeeder
+exit
+php artisan test --filter=AdminAccessTest
+exit
+php artisan test --filter=AdminAccessTest
+exit
+php artisan migrate:fresh --seed
+php artisan migrate:fresh --seed --env=testing
+exit

@@ -1,0 +1,116 @@
+.report-container {
+    width: 760px;
+    margin: 40px auto;
+}
+
+.page-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.summary-note {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.summary-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.summary-item {
+    width: 30%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.monthly-section h2,
+.alert-section h2 {
+    margin-bottom: 10px;
+}
+
+/*  テーブル */
+.monthly-table {
+    width: 100%;
+    background: #fff;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.monthly-table__head,
+.monthly-table__data {
+    padding: 12px;
+    border-bottom: 2px solid #e1e1e1;
+}
+
+.monthly-table__head:first-child,
+.monthly-table__data:first-child {
+    text-align: left;
+}
+
+.monthly-table__head:nth-child(2),
+.monthly-table__head:nth-child(3),
+.monthly-table__data:nth-child(2),
+.monthly-table__data:nth-child(3) {
+    text-align: right;
+}
+
+.alert-note {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.alert-items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.alert-item {
+    width: 30%;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 20px;
+    margin: 20px 0 10px;
+    font-weight: bold;
+}
+
+.summary-section,
+.alert-items {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-item,
+.alert-item {
+    flex: 1;
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #e1e1e1;
+    text-align: left;
+}
+
+.summary-item h3,
+.alert-item h3 {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.summary-item p,
+.alert-item p {
+    font-size: 22px;
+    font-weight: bold;
+}

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Flea Market App</title>
+    <title>Attendance-Management-App</title>
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}">
     @yield('css')
@@ -16,34 +16,30 @@
         <div class="header__inner">
             {{-- 左：ロゴ --}}
             <div class="header__left">
-                <a href="/" class="header__logo">
+                <a href="{{ route('login.form') }}" class="header__logo">
                     <img src="{{ asset('images/COACHTECHヘッダーロゴ.png') }}" alt="COACHTECH">
                 </a>
             </div>
-            {{-- 中央：検索欄（必要な画面のみ） --}}
-            <div class="header__center">
-                @if (($showSearch ?? false) === true)
-                    <form action="/" method="GET" class="header__search-form">
-                        <input type="text" name="keyword" value="{{ request('keyword') }}"
-                            class="header__search-input" placeholder="なにをお探しですか？">
-                    </form>
-                @endif
-            </div>
             {{-- 右：ボタン類 --}}
             <div class="header__right">
-                @if (($authButtons ?? 'none') === 'guest')
-                    <a href="{{ route('login') }}" class="header__btn">ログイン</a>
-                    <a href="{{ route('login') }}" class="header__btn">マイページ</a>
-                    <a href="{{ route('login') }}" class="header__btn header__btn--primary">出品</a>
-                @elseif(($authButtons ?? 'none') === 'auth')
-                    <form action="/logout" method="POST">
+                @if (($authButtons ?? 'none') === 'none')
+                @elseif(($authButtons ?? 'none') === 'user')
+                    <a href="{{ route('attendance.index') }}" class="header__btn">勤怠</a>
+                    <a href="{{ route('attendance.list') }}" class="header__btn">勤怠一覧</a>
+                    <a href="{{ route('stamp_request.list') }}" class="header__btn">申請</a>
+                    <a href="{{ route('attendance.report') }}" class="header__btn">レポート</a>
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button class="header__btn">ログアウト</button>
                     </form>
-                    <a href="{{ route('mypage.index') }}" class="header__btn">マイページ</a>
-                    <a href="{{ route('sell.index') }}" class="header__btn header__btn--primary">出品</a>
-                @elseif(($authButtons ?? 'none') === 'none')
-                    {{-- 何も表示しない（ログイン画面・会員登録画面） --}}
+                @elseif(($authButtons ?? 'none') === 'admin')
+                    <a href="{{ route('admin.attendance.list') }}" class="header__btn">勤怠一覧</a>
+                    <a href="{{ route('admin.staff.list') }}" class="header__btn">スタッフ一覧</a>
+                    <a href="{{ route('admin.stamp_request.list') }}" class="header__btn">申請一覧</a>
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+                        <button class="header__btn">ログアウト</button>
+                    </form>
                 @endif
             </div>
         </div>

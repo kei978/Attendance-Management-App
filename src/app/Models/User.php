@@ -6,12 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Item;
-use App\Models\Order;
-use App\Models\Address;
-use App\Models\Comment;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -26,7 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'avatar',
+        'role',
     ];
 
     /**
@@ -48,39 +44,33 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function addresses()
+    /**
+     * 勤怠
+     *
+     * @return HasMany
+     */
+    public function attendances()
     {
-        return $this->hasMany(Address::class);
+        return $this->hasMany(Attendance::class);
     }
 
-    public function items()
+    /**
+     * 修正申請
+     *
+     * @return HasMany
+     */
+    public function attendanceRequests()
     {
-        return $this->hasMany(Item::class);
+        return $this->hasMany(AttendanceRequest::class);
     }
 
-    public function comments()
+    /**
+     * 月次集計
+     *
+     * @return HasMany
+     */
+    public function monthlySummaries()
     {
-        return $this->hasMany(Comment::class);
-    }
-
-    public function orders()
-    {
-        return $this->hasMany(Order::class, 'buyer_id');
-    }
-
-    public function likes()
-    {
-        return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
-    }
-
-    public function getImageUrlAttribute()
-    {
-        // avatar が URL の場合はそのまま返す
-        if (Str::startsWith($this->avatar, ['http://', 'https://'])) {
-            return $this->avatar;
-        }
-
-        // avatar がファイル名の場合は storage から返す
-        return asset('storage/' . $this->avatar);
+        return $this->hasMany(MonthlySummary::class);
     }
 }
